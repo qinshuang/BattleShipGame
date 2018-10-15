@@ -1,0 +1,13 @@
+#!usr/bin/env python
+# -*- coding:utf-8 -*-
+"""
+@author:sqin
+@file: __init__.py.py
+@time: 2018/10/{DAY}
+"""
+
+from flask import Blueprint
+
+main = Blueprint('main', __name__)
+
+from . import views
