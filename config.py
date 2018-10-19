@@ -15,6 +15,7 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     HOST="0.0.0.0"
     PORT=5000
+
     @staticmethod
     # 此注释可表明使用类名可以直接调用该方法
     def init_app(app):

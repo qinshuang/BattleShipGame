@@ -8,7 +8,8 @@
 
 from flask import Blueprint
 from flask_restful import Api
+from app.base.errors import errors
 
 apiv1 = Blueprint('apiv1', __name__)
-api = Api(apiv1)
+api = Api(apiv1,errors=errors)
 from . import views
