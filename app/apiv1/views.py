@@ -46,6 +46,10 @@ class MatchView(Resource):
         BaseMixin().create(match)
         return MatchSchema().dump(match)
 
+    def put(self):
+        pass
+
+
 
 api.add_resource(UserView, '/user/<int:user_id>')
 api.add_resource(MatchView, '/match/detail/')
