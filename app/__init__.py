@@ -25,5 +25,4 @@ def create_app(config_name):
     from .apiv1 import apiv1 as apiv1_blueprint
     app.register_blueprint(main_blueprint)
     app.register_blueprint(apiv1_blueprint, url_prefix='/api/v1')
-
     return app

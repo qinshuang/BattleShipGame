@@ -7,11 +7,16 @@
 """
 
 from flask_marshmallow import Schema
-from app.models import User
+from app.models import User, Match
 
 
 class UserSchema(Schema):
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('id','username', 'email')
 
+
+class MatchSchema(Schema):
+    class Meta:
+        model = Match
+        fields = ('id','user_b', 'user_w', 'status', 'user_active')
