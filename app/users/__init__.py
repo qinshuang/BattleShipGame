@@ -3,15 +3,16 @@
 """
 @author:sqin
 @file: __init__.py.py
-@time: 2018/12/27
+@time: 2019/01/02
 """
-
 
 from flask import Blueprint
 from flask_restful import Api
 from app.commons.errors import errors
+from flask_marshmallow import Marshmallow
 
-apiv1 = Blueprint('apiv1', __name__)
-api = Api(apiv1, errors=errors)
+users = Blueprint('users', __name__)
+api = Api(users, errors=errors)
+ma = Marshmallow(api)
 
 from . import views

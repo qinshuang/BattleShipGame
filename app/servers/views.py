@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 """
 @author:sqin
-@file: __init__.py.py
-@time: 2018/10/19
+@file: views.py
+@time: 2019/01/08
 """
+

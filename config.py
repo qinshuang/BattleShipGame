@@ -13,9 +13,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
-    HOST="0.0.0.0"
-    PORT=5000
-
+    HOST = "0.0.0.0"
+    PORT = 5000
+    JWT_SECRET_KEY = "1234"
+    SQLALCHEMY_ECHO=True
     @staticmethod
     # 此注释可表明使用类名可以直接调用该方法
     def init_app(app):
@@ -24,8 +25,11 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    ENV = "DEVELOPMENT"
+
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-                              'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+                              'mysql://root:123456@127.0.0.1/itinfo'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
 class TestingConfig(Config):
