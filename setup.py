@@ -19,16 +19,14 @@ KEYWORDS = 'sample setuptools development'
 # 项目依赖，也就是必须安装的包
 REQUIRED = [
     'Flask==1.0.2',
-    'Flask-JWT-Extended>=3.15.0',
-    'flask-marshmallow>=0.9.0',
-    'Flask-Migrate>=2.3.1',
-    'Flask-RESTful>=0.3.7',
-    'Flask-Script>=2.0.6',
-    'Flask-SQLAlchemy>=2.3.2',
-    'mysqlclient>=1.3.14',
-    'PyYAML>=3.13',
-    'marshmallow-sqlalchemy',
-    'pyarmor'
+    'flask-restplus==0.12.1',
+    'flask_sqlalchemy',
+    'flask_jwt_extended',
+    'flask_script',
+    'flask_migrate',
+    'pyyaml',
+    'flask_marshmallow',
+    'marshmallow-sqlalchemy '
 ]
 
 # 项目的可选依赖，可以不用安装
@@ -48,14 +46,14 @@ here = os.path.abspath(os.path.dirname(__file__))
 try:
     with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
         long_description = '\n' + f.read()
-except FileNotFoundError:
+except BaseException:
     long_description = DESCRIPTION
 
 # 当前面没指定版本号的时候，将包的 __version__.py 模块加载进来
 about = {}
 if not VERSION:
     with open(os.path.join(here, '__version__.py')) as f:
-        exec(f.read(), about)
+        exec (f.read(), about)
 else:
     about['__version__'] = VERSION
 
@@ -74,13 +72,13 @@ setup(
     # 项目中要包括和要排除的文件，setuptools可以自动搜索__init__.py文件来找到包
 
     packages=[NAME],
-    package_dir = {NAME:'src'},
+    package_dir={NAME: 'src'},
     # 如果项目中包含任何不在包中的单文件模块，需要添加py_modules让setuptools能找到它们:
     # py_modules=['yitian_first_package'],
 
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
+    entry_points={
+        'console_scripts': ['bsgd=%s.manage:command_line' % NAME],
+    },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
     # 老旧的distutils需要手动添加项目中需要的非代码文件，setuptools可以用下面参数自动添加(仅限包目录下)

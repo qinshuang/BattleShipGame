@@ -7,7 +7,7 @@
 """
 
 from flask import Blueprint
-from flask_restful import Api
+from flask_restplus import Api
 from app.commons.errors import errors
 from flask_marshmallow import Marshmallow
 

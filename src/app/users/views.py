@@ -7,21 +7,20 @@
 """
 from . import api
 from .serialize import *
-from flask_restful import Resource, reqparse
+from flask_restplus import Resource, reqparse
 from flask_jwt_extended import jwt_required, create_access_token
 
 from app.commons.DatasMixin import DatasMixin
 from app.commons.decorators import roles_required
 from flask_jwt_extended import get_current_user
+
 parser = reqparse.RequestParser()
 parser.add_argument('rolename', type=str, help='rolename')
-
 
 login_parser = reqparse.RequestParser()
 login_parser.add_argument('username', type=str, help='username')
 
 class UserLogin(Resource):
-
     def post(self):
         args = login_parser.parse_args()
 
@@ -34,6 +33,7 @@ class UserLogin(Resource):
             'message': 'User {} was created'.format(args['username']),
             'access_token': access_token
         }
+
 
 role_parser = reqparse.RequestParser()
 role_parser.add_argument('rolename', type=str, help='rolename')
@@ -54,6 +54,7 @@ class RolesManage(Resource):
 class OneRoleManage(Resource):
     obj = DatasMixin(RoleSchema, Role)
 
+    @api.doc(params={'id': 'An ID'})
     def get(self, id):
         return self.obj.get_one(id)
 
@@ -87,7 +88,7 @@ class UserManage(Resource):
                                     "email": email,
                                     "first_name": first_name,
                                     "last_name": last_name,
-                                    "active":True,
+                                    "active": True,
                                     "password": "123456"})
 
 

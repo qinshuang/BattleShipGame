@@ -1,7 +1,7 @@
 #! /bin/bash
 # =================================
 # Example: 
-# sh ObfuscatePy.sh src "manage.py" src 
+# sh ObfuscatePy.sh src "manage.py" src
 #
 #
 # =================================
@@ -19,7 +19,7 @@ cd -
 # =================================
 
 other_file(){
-cd ..
+cd $PROJECT_SRC_PATH/../
 cp setup.py sdist/dist/
 cp MANIFEST.in sdist/dist/
 cp README.md sdist/dist/
@@ -28,17 +28,12 @@ for f in  logging.yml
 do
 cp $PROJECT_SRC_PATH/$f sdist/dist/$PROJECT_NAME
 done
-cd ..
-cp setup.py sdist/dist/
-cp MANIFEST.in sdist/dist/
-cp README.md sdist/dist/
 cd -
 }
 
 initLicense(){
-cd sdist
-echo $PROJECT_SRC_PATH
-./pyarmor licenses --bind-file="$PROJECT_SRC_PATH/logging.yml;logging.yml" user
+cd $PROJECT_SRC_PATH/../sdist
+./pyarmor licenses --bind-file="$PROJECT_SRC_PATH/private.key;private.key" user
 md5sum licenses/user/license.lic
 cp licenses/user/license.lic dist/$PROJECT_NAME/license.lic
 }

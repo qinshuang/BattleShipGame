@@ -5,16 +5,14 @@
 @file: errors.py
 @time: 2018/10/15
 """
-from flask_restful import HTTPException
 
-
-class RequestParmsError(HTTPException):
+class RequestParmsError(Exception):
     pass
 
-class DuplicateDataError(HTTPException):
+class DuplicateDataError(Exception):
     pass
 
-class NoPermissionError(HTTPException):
+class NoPermissionError(Exception):
     pass
 
 errors = {
