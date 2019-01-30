@@ -26,7 +26,8 @@ REQUIRED = [
     'flask_migrate',
     'pyyaml',
     'flask_marshmallow',
-    'marshmallow-sqlalchemy '
+    'marshmallow-sqlalchemy',
+    'mysqlclient',
 ]
 
 # 项目的可选依赖，可以不用安装

@@ -29,7 +29,7 @@ manager.add_command('showurls', ShowUrls)
 manager.add_command('db', MigrateCommand)
 
 # db models
-from app.users.models import *
+from app.apiv1.users.models import *
 
 
 # @app.before_first_request

@@ -10,8 +10,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from config import config
-from flask import Blueprint
-from flask_restplus import Api
 
 db = SQLAlchemy()
 
@@ -26,15 +24,14 @@ def create_app(config_name):
     # 路由和其他处理程序定义
     # ...
     # from .main import main as main_blueprint  # 从当前目录下面的main子目录导入main
-    from .apiv1 import apiv1 as apiv1_blueprint
-    from .users import users as users_blueprint
-
+    from .apiv1 import apiv1_blueprint
+    # from .errors import errors_blueprint
     # app.register_blueprint(main_blueprint)
-    app.register_blueprint(apiv1_blueprint, url_prefix='/api/v1')
-    app.register_blueprint(users_blueprint, url_prefix='/api/users')
+    app.register_blueprint(apiv1_blueprint, url_prefix="/api/v1")
+    # app.register_blueprint(errors_blueprint)
 
-    from .users.models import User
-    from .users.serialize import UserSchema
+    # from app.apiv1.users.serialize import UserSchema
+    from app.apiv1.users.models import User
 
     @jwt.user_claims_loader
     def add_claims_to_access_token(identity):

@@ -6,11 +6,12 @@
 @time: 2019/01/02
 """
 from app import db
+from app.commons.baseMixin import BaseMixin
 from sqlalchemy import or_
 
 
 # Define the User data-model
-class User(db.Model):
+class User(db.Model,BaseMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer(), primary_key=True)
     # User Authentication fields
@@ -34,31 +35,15 @@ class User(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_all(cls):
-        return db.session.query(cls).all()
-
-    @classmethod
     def get_by_username(cls, username):
         return db.session.query(cls).filter(cls.username==username).first()
 
 
 # Define the Role data-model
-class Role(db.Model):
+class Role(db.Model, BaseMixin):
     __tablename__ = 'roles'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
-
-    @classmethod
-    def list(cls):
-        return db.session.query(cls).all()
-
-    @classmethod
-    def create(cls, rolername):
-        new_role = Role()
-        new_role.name = rolername
-        db.session.add(new_role)
-        db.session.commit()
-        return new_role
 
 
 # Define the UserRoles association table
@@ -67,3 +52,4 @@ class UserRoles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
     role_id = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
+

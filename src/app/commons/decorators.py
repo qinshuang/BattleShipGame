@@ -7,7 +7,7 @@
 """
 from flask_jwt_extended import get_jwt_claims
 from functools import wraps
-from errors import NoPermissionError
+from app.errors.handlers import NoPermissionError
 
 
 def roles_required(*role_names):

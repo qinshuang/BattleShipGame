@@ -3,15 +3,14 @@
 """
 @author:sqin
 @file: __init__.py.py
-@time: 2018/12/27
+@time: 2019/01/29
 """
-
 
 from flask import Blueprint
 from flask_restplus import Api
-from app.commons.errors import errors
+from .users import ns as user_api
 
-apiv1 = Blueprint('apiv1', __name__)
-api = Api(apiv1, errors=errors)
+apiv1_blueprint = Blueprint("apiv1", __name__)
+api = Api(apiv1_blueprint, version="1.0", title="OpenApi", description="The Open Api Service", doc='/doc/')
 
-from . import views
+api.add_namespace(user_api)
