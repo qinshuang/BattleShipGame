@@ -20,5 +20,5 @@ user_schema = ns.model('UserModel', {
     'active': fields.String(description="unique id"),
     'first_name': fields.String(description="unique id"),
     'last_name': fields.String(description="unique id"),
-    'roles': fields.List(fields.Nested(role_schema, many=True))
+    'roles': fields.List(fields.Nested(role_schema, many=True)),
 })

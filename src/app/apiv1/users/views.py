@@ -49,16 +49,16 @@ role_parser.add_argument('rolename', type=str, help='rolename')
 class RolesManage(Resource):
 
     @ns.doc("GET Role List")
-    @ns.response(200, 'Success')
     @ns.marshal_with(role_schema)
+    @ns.response(200, 'Success')
     def get(self):
         return Role.get_all()
 
     @ns.doc("Create Role")
     @ns.expect(role_parser)
+    @ns.marshal_with(role_schema)
     @ns.response(201, 'Success')
     @ns.response(400, 'Validation Error')
-    @ns.marshal_with(role_schema)
     def post(self):
         args = role_parser.parse_args()
         rolename = args.get("rolename")
@@ -71,14 +71,14 @@ class RolesManage(Resource):
 class OneRoleManage(Resource):
 
     @ns.doc("GET A Role Detail")
-    @ns.response(200, 'Success')
     @ns.marshal_with(role_schema)
+    @ns.response(200, 'Success')
     def get(self, id):
         return Role.get_one(id)
 
     @ns.doc("Delete A Role ")
-    @ns.response(200, 'Success')
     @ns.marshal_with(role_schema)
+    @ns.response(200, 'Success')
     def delete(self, id):
         return Role.delete(id)
 
@@ -95,15 +95,15 @@ user_parser.add_argument('last_name', type=str, help='last_name', required=True)
 class UserManage(Resource):
 
     @ns.doc("GET Users List")
-    @ns.response(200, 'Success')
     @ns.marshal_with(user_schema)
+    @ns.response(200, 'Success')
     def get(self):
         return User.get_all()
 
     @ns.doc("Create A User")
-    @ns.response(200, 'Success')
-    @ns.marshal_with(user_schema)
     @ns.expect(user_parser)
+    @ns.marshal_with(user_schema)
+    @ns.response(200, 'Success')
     # @jwt_required
     # @roles_required("SuperAdmin")
     def post(self):
@@ -129,8 +129,8 @@ user_role_parser.add_argument('rolename', type=str, help='rolename', required=Tr
 class UserRoleManage(Resource):
 
     @ns.doc("A User set roles")
-    @ns.response(200, 'Success')
     @ns.expect(user_role_parser)
+    @ns.response(200, 'Success')
     @jwt_required
     @roles_required("SuperAdmin")
     def post(self):

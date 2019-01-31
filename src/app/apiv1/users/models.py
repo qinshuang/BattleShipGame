@@ -7,7 +7,6 @@
 """
 from app import db
 from app.commons.baseMixin import BaseMixin
-from sqlalchemy import or_
 
 
 # Define the User data-model

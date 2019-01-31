@@ -11,6 +11,7 @@ from flask_restplus import Namespace
 
 ns = Namespace("users", description="Users CURD api.")
 
+
 from . import views
 
 
