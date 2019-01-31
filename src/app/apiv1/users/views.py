@@ -6,12 +6,15 @@
 @time: 2019/01/29
 """
 
-from . import ns
+# from . import ns
 from .serialize import *
 from flask_restplus import Resource, reqparse, fields
 from flask_jwt_extended import jwt_required, create_access_token, get_current_user
 from .models import *
 from app.commons.decorators import roles_required
+import logging
+
+logger=logging.getLogger(__name__)
 
 login_parser = reqparse.RequestParser()
 login_parser.add_argument('username', type=str, help='user name', required=True)
@@ -31,6 +34,7 @@ class UserLogin(Resource):
         #         User(username=args['openid'], email='', openid=args['openid']).save_to_db()
         access_token = create_access_token(identity=args['username'])
         user = get_current_user()
+        logger.info("{username} login success".format(username=args["username"]))
         return {
             'message': 'User {} was created'.format(args['username']),
             'access_token': access_token

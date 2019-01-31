@@ -5,13 +5,13 @@
 @file: __init__.py
 @time: 2018/10/15
 """
-
+import json
 from flask import Flask
 from flask_restplus import marshal
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from config import config
-import json
+
 
 db = SQLAlchemy()
 
@@ -24,10 +24,8 @@ def create_app(config_name):
     db.init_app(app)
 
     # 路由和其他处理程序定义
-    # ...
-    # from .main import main as main_blueprint  # 从当前目录下面的main子目录导入main
+
     from .apiv1 import apiv1_blueprint
-    # app.register_blueprint(main_blueprint)
     app.register_blueprint(apiv1_blueprint, url_prefix="/api/v1")
 
     from app.apiv1.users.serialize import user_schema
