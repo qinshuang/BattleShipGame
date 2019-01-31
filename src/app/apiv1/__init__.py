@@ -11,6 +11,7 @@ from flask_restplus import Api
 from .users import ns as user_api
 
 apiv1_blueprint = Blueprint("apiv1", __name__)
-api = Api(apiv1_blueprint, version="1.0", title="OpenApi", description="The Open Api Service", doc='/doc/')
+apiv1 = Api(apiv1_blueprint, version="1.0", title="OpenApi", description="The Open Api Service", doc='/doc/')
 
-api.add_namespace(user_api)
+apiv1.add_namespace(user_api)
+

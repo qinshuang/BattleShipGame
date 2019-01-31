@@ -7,9 +7,11 @@
 """
 
 from flask import Flask
+from flask_restplus import marshal
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from config import config
+import json
 
 db = SQLAlchemy()
 
@@ -25,16 +27,14 @@ def create_app(config_name):
     # ...
     # from .main import main as main_blueprint  # 从当前目录下面的main子目录导入main
     from .apiv1 import apiv1_blueprint
-    # from .errors import errors_blueprint
     # app.register_blueprint(main_blueprint)
     app.register_blueprint(apiv1_blueprint, url_prefix="/api/v1")
-    # app.register_blueprint(errors_blueprint)
 
-    # from app.apiv1.users.serialize import UserSchema
+    from app.apiv1.users.serialize import user_schema
     from app.apiv1.users.models import User
 
     @jwt.user_claims_loader
     def add_claims_to_access_token(identity):
-        return UserSchema().dump(User.get_by_username(identity)).data
+        return json.dumps(marshal(User.get_by_username(identity), user_schema))
 
     return app

@@ -5,8 +5,6 @@
 @file: serialize.py
 @time: 2019/01/02
 """
-# from flask_marshmallow import Schema
-# from marshmallow import fields
 from flask_restplus import fields
 from app.apiv1.users import ns
 
@@ -23,5 +21,4 @@ user_schema = ns.model('UserModel', {
     'first_name': fields.String(description="unique id"),
     'last_name': fields.String(description="unique id"),
     'roles': fields.List(fields.Nested(role_schema, many=True))
-
 })

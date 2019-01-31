@@ -7,10 +7,9 @@
 """
 
 from app import db
-from app.errors.handlers import *
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import desc, asc
-
+from .errorHandlers import *
 
 class BaseMixin(object):
 
@@ -28,7 +27,7 @@ class BaseMixin(object):
         :param search:
         :return:
         """
-        start_index = per_page * (page - 1) + 1
+        start_index = per_page * (page - 1)
 
         query = db.session.query(cls).limit(per_page).offset(start_index)
         if sortby:
