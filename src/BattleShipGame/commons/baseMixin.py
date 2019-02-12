@@ -6,7 +6,7 @@
 @time: 2019/01/02
 """
 
-from app import db
+from BattleShipGame import db
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import desc, asc
 from .errorHandlers import *

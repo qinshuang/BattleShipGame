@@ -72,13 +72,17 @@ setup(
     keywords=KEYWORDS,
     # 项目中要包括和要排除的文件，setuptools可以自动搜索__init__.py文件来找到包
 
-    packages=[NAME],
-    package_dir={NAME: 'src'},
+    packages=['BattleShipGame',
+              'BattleShipGame.apiv1',
+              'BattleShipGame.apiv1.users',
+              'BattleShipGame.commons',
+              ],
+    # package_dir={NAME:''},
     # 如果项目中包含任何不在包中的单文件模块，需要添加py_modules让setuptools能找到它们:
     # py_modules=['yitian_first_package'],
-
+    # data_files=['BattleShipGame/logging.yml','BattleShipGame/private.key'],
     entry_points={
-        'console_scripts': ['bsgd=%s.manage:command_line' % NAME],
+        'console_scripts': ['bsgd=BattleShipGame.manage:command_line'],
     },
     install_requires=REQUIRED,
     extras_require=EXTRAS,

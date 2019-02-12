@@ -14,17 +14,18 @@ PROJECT_NAME=$3
 
 cd $relative_path
 PROJECT_SRC_PATH=`pwd`
+PROJECT_PATH=$PROJECT_SRC_PATH/../
 cd -
 
 # =================================
 
 other_file(){
-cd $PROJECT_SRC_PATH/../
+cd $PROJECT_PATH
 cp setup.py sdist/dist/
 cp MANIFEST.in sdist/dist/
 cp README.md sdist/dist/
 
-for f in  logging.yml
+for f in  logging.yml private.key
 do
 cp $PROJECT_SRC_PATH/$f sdist/dist/$PROJECT_NAME
 done
@@ -48,6 +49,7 @@ fi
 }
 
 obfuscate(){
+cd $PROJECT_PATH
 pyarmor init --src=$PROJECT_SRC_PATH sdist
 cd sdist
 ./pyarmor config --entry=$ENTRY --manifest="include *.py,recursive-include app *.py"

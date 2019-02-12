@@ -10,7 +10,7 @@ from flask import Flask
 from flask_restplus import marshal
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
-from config import config
+from BattleShipGame.config import config
 
 
 db = SQLAlchemy()
@@ -28,8 +28,8 @@ def create_app(config_name):
     from .apiv1 import apiv1_blueprint
     app.register_blueprint(apiv1_blueprint, url_prefix="/api/v1")
 
-    from app.apiv1.users.serialize import user_schema
-    from app.apiv1.users.models import User
+    from BattleShipGame.apiv1.users.serialize import user_schema
+    from BattleShipGame.apiv1.users.models import User
 
     @jwt.user_claims_loader
     def add_claims_to_access_token(identity):

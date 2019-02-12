@@ -5,12 +5,12 @@
 @file: models.py
 @time: 2019/01/02
 """
-from app import db
-from app.commons.baseMixin import BaseMixin
+from BattleShipGame import db
+from BattleShipGame.commons.baseMixin import BaseMixin
 
 
 # Define the User data-model
-class User(db.Model,BaseMixin):
+class User(db.Model, BaseMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer(), primary_key=True)
     # User Authentication fields

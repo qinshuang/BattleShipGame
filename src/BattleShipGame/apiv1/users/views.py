@@ -10,8 +10,8 @@
 from .serialize import *
 from flask_restplus import Resource, reqparse, fields
 from flask_jwt_extended import jwt_required, create_access_token, get_current_user
-from .models import *
-from app.commons.decorators import roles_required
+from .models import Role,User
+from BattleShipGame.commons.decorators import roles_required
 import logging
 
 logger=logging.getLogger(__name__)

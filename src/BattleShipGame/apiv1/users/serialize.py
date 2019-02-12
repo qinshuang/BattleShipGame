@@ -6,7 +6,7 @@
 @time: 2019/01/02
 """
 from flask_restplus import fields
-from app.apiv1.users import ns
+from BattleShipGame.apiv1.users import ns
 
 role_schema = ns.model('RoleModel', {
     'id': fields.String(required=True, readonly=True, description="unique id"),

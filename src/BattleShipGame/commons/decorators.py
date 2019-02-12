@@ -7,7 +7,7 @@
 """
 from flask_jwt_extended import get_jwt_claims
 from functools import wraps
-from app.commons.errorHandlers import NoPermissionError
+from BattleShipGame.commons.errorHandlers import NoPermissionError
 
 def roles_required(*role_names):
     def wrapper(view_function):

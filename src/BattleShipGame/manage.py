@@ -7,12 +7,15 @@
 """
 
 import os
-from app import create_app, db
+import sys
+from os.path import abspath, dirname
+
+# sys.path.insert(0, abspath(dirname(__file__)))
+
+from BattleShipGame import create_app, db
 from flask_script import Manager
 from flask_script.commands import ShowUrls
 from flask_migrate import Migrate, MigrateCommand
-
-
 import logging.config
 import yaml
 
@@ -29,15 +32,16 @@ manager.add_command('showurls', ShowUrls)
 manager.add_command('db', MigrateCommand)
 
 # db models
-from app.apiv1.users.models import *
+from BattleShipGame.apiv1.users.models import *
 
 
-# @app.before_first_request
+# @BattleShipGame.before_first_request
 # def create_tables():
 #     db.create_all()
 
 def command_line():
     manager.run()
+
 
 if __name__ == '__main__':
     manager.run()
